@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank app</title>
+  </head>
+  <body>
+    <center>
+      <h1>Bank App</h1>
+      <h3 id="uname"> </h3>
+      <i id="datetime"></i>
+      <br>
+      <a href="index.html"> <button> Logout</button></a>
+      <form>
+        <label> Enter Amount</label>
+        <input type="number" id="Amount" required />
+        <br />
+        <h3 id="output"></h3>
+        <br />
+        <input type="button" value="Credit" onclick="Credit()" />
+        <input type="button" value="Debit" onclick="Debit()"/>
+        <input type="button" value="Show Balance" onclick="Show_Balance()" />
+        <input type="button" value="Clear"  onclick="Clear()"/>
+      </form>
+    </center>
+
+    <script>
+        let uname=localStorage.getItem("uname");
+        document.getElementById("uname"). innerHTML="Welcome "+uname;
+        document.getElementById("datetime").innerHTML="Login at" +`${new Date().toLocaleDateString()}`;
+      
+        let balance = 0;
+      function clear1() {
+        document.getElementById("Amount").innerHTML = "";
+        document.getElementById("output").innerHTML = "";
+      }
+
+      function Show_Balance() {
+        document.getElementById("output").innerHTML =
+          "Current Balance=" + balance;
+      }
+
+      function Credit() {
+        let Amount = Number(document.getElementById("Amount").value);
+        console.log(Amount);
+        if (Amount > 0 ) {
+          balance = balance + Amount;
+          document.getElementById("output").innerHTML =
+            "Amount credited Successfully;";
+        } else {
+          alert("Entered Amount is incorrect..... Try again");
+        }
+      }
+
+      function Debit() {
+        let Amount = Number(document.getElementById("Amount").value);
+        console.log(Amount);
+        if (Amount > 0 ) {
+          balance = balance - Amount;
+          document.getElementById("output").innerHTML =
+            "Amount Debited Successfully;";
+        } else {
+          alert("Entered Amount is incorrect..... Try again");
+        }
+      }
+    </script>
+  </body>
+</html>
